@@ -30,7 +30,10 @@ class QueueListWidget extends StatelessWidget {
                 Expanded(child: Text("p${element.id}")),
                 Expanded(child: Text(getStringFromInteger(element.AT))),
                 Expanded(child: Text(getStringFromInteger(element.BT))),
-                Expanded(child: Text(getStringFromInteger(element.priority))),
+                if (provider.algorithm == 4)
+                  Expanded(child: Text(getStringFromInteger(element.priority))),
+                if (provider.algorithm == 5)
+                  Expanded(child: Text(getStringFromInteger(element.qIndex))),
               ],
             ),
           ],

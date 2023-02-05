@@ -81,8 +81,8 @@ class _ProcessTileState extends State<ProcessTile> {
           decoration: const BoxDecoration(
               border: Border.symmetric(vertical: BorderSide())),
           child: Center(
-            child: Text(
-                (widget.process.id != null) ? "p${widget.process.id}" : ""),
+            child:
+                Text((widget.process.id != -1) ? "p${widget.process.id}" : ""),
           ),
         ));
   }

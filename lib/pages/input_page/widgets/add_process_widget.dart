@@ -113,7 +113,8 @@ class _AddProcessWidgetState extends State<AddProcessWidget> {
                       (widget.algorithm == 4) ? int.parse(prio.text) : -1,
                       qIndex: (int.tryParse(qIndex.text) == null)
                           ? 1
-                          : int.parse(qIndex.text)),
+                          : int.parse(qIndex.text),
+                      id: -1),
                   widget.algorithm);
             },
             child: const Text("add", style: TextStyle(color: Colors.white)))

@@ -16,7 +16,7 @@ class ExcuteProvider with ChangeNotifier {
 
   int get time => _time;
 
-  Process currentProcess = Process(-1, -1, -1, qIndex: 1);
+  Process currentProcess = Process(-1, -1, -1, qIndex: 1, id: -1);
   void initTime() {
     _time = 0;
     timeChanged();
@@ -60,7 +60,7 @@ class ExcuteProvider with ChangeNotifier {
   void timeChanged() {
     queueList = [];
     finishedProcessesList = [];
-    currentProcess = Process(-1, -1, -1, qIndex: 1);
+    currentProcess = Process(-1, -1, -1, qIndex: 1, id: -1);
     for (int i = 0; i <= _time; i++) {
       finishedProcessesList.add(currentProcess);
 
@@ -110,7 +110,7 @@ class ExcuteProvider with ChangeNotifier {
       case 5:
         return Algorithm.mlq(queueList, mlqAlgorithm!, currentProcess);
       default:
-        return Process(-1, -1, -1, qIndex: 1);
+        return Process(-1, -1, -1, qIndex: 1, id: -1);
     }
   }
 

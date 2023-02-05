@@ -33,7 +33,7 @@ class InputPageProvider with ChangeNotifier {
       list.add(process);
       list.sort(((a, b) => a.AT.compareTo(b.AT)));
     }
-
+    setId();
     notifyListeners();
   }
 
@@ -41,7 +41,14 @@ class InputPageProvider with ChangeNotifier {
     list.removeWhere(
       (element) => list.indexOf(element) == index,
     );
+    setId();
     notifyListeners();
+  }
+
+  void setId() {
+    for (var element in list) {
+      element.id = list.indexOf(element);
+    }
   }
 
   void changeIndex(int i) {
