@@ -1,5 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:os_algorithms_project/provider/excuting_page_provider.dart';
+import 'package:os_algorithms_project/provider/executing_page_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../global.dart';
@@ -14,7 +14,7 @@ class QueueListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ExcuteProvider provider = Provider.of<ExcuteProvider>(context);
+    ExecuteProvider provider = Provider.of<ExecuteProvider>(context);
     List<Widget> queueList = [];
     queueList.add(const SizedBox(height: 10));
     List<Process> listOfQueue = provider.queueList;
@@ -52,8 +52,8 @@ class QueueListWidget extends StatelessWidget {
             //For the queue table
             child: Column(
               children: [
-                Row(
-                  children: const [
+                const Row(
+                  children: [
                     Expanded(child: Text("process")),
                     Expanded(child: Text("A.T.")),
                     Expanded(child: Text("B.T")),

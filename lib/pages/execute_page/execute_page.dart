@@ -1,18 +1,18 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:os_algorithms_project/pages/excute_page/widgets/current_process_widget.dart';
-import 'package:os_algorithms_project/pages/excute_page/widgets/finished_list_widget.dart';
+import 'package:os_algorithms_project/pages/execute_page/widgets/current_process_widget.dart';
+import 'package:os_algorithms_project/pages/execute_page/widgets/finished_list_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../global.dart';
-import '../../provider/excuting_page_provider.dart';
-import 'widgets/controll_bar_widget.dart';
+import '../../provider/executing_page_provider.dart';
+import 'widgets/control_bar_widget.dart';
 import 'widgets/queue_list_widget.dart';
 
-class ExcutingPage extends StatelessWidget {
+class ExecutingPage extends StatelessWidget {
   final int algorithm;
   final List<Process> processesList;
 
-  const ExcutingPage(
+  const ExecutingPage(
       {super.key, required this.algorithm, required this.processesList});
   String getStringFromInteger(int integer) {
     String string = "";
@@ -22,20 +22,20 @@ class ExcutingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ExcuteProvider>(
-      create: ((context) => ExcuteProvider(processesList, algorithm)),
+    return ChangeNotifierProvider<ExecuteProvider>(
+      create: ((context) => ExecuteProvider(processesList, algorithm)),
       builder: (context, _) {
         return NavigationView(
           appBar: NavigationAppBar(
               leading: IconButton(
                   icon: const Icon(FluentIcons.back),
                   onPressed: (() => Navigator.of(context).pop()))),
-          content: Column(children: [
+          content: const Column(children: [
             Row(
-              children: const [QueueListWidget(), CurrentProcessWidget()],
+              children: [QueueListWidget(), CurrentProcessWidget()],
             ),
-            const FinishedListWidget(),
-            const ControllBarWidget()
+            FinishedListWidget(),
+            ControlBarWidget()
           ]),
         );
       },

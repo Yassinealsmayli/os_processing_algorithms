@@ -3,14 +3,14 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:provider/provider.dart';
 
 import '../../../global.dart';
-import '../../../provider/excuting_page_provider.dart';
+import '../../../provider/executing_page_provider.dart';
 
 class FinishedListWidget extends StatelessWidget {
   const FinishedListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ExcuteProvider provider = Provider.of<ExcuteProvider>(context);
+    ExecuteProvider provider = Provider.of<ExecuteProvider>(context);
     List<ProcessTile> finishedProcesses = [];
     List<Process> listOfFinished = provider.finishedProcessesList;
     Map<int, int> flexMap = {};

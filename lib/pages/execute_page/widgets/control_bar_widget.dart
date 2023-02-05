@@ -2,14 +2,14 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import 'package:os_algorithms_project/provider/excuting_page_provider.dart';
+import 'package:os_algorithms_project/provider/executing_page_provider.dart';
 
-class ControllBarWidget extends StatelessWidget {
-  const ControllBarWidget({super.key});
+class ControlBarWidget extends StatelessWidget {
+  const ControlBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ExcuteProvider provider = Provider.of<ExcuteProvider>(context);
+    ExecuteProvider provider = Provider.of<ExecuteProvider>(context);
     TextEditingController timeController = TextEditingController.fromValue(
         TextEditingValue(text: "${provider.time}"));
     return Expanded(

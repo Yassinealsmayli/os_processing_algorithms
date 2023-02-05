@@ -1,5 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:os_algorithms_project/provider/excuting_page_provider.dart';
+import 'package:os_algorithms_project/provider/executing_page_provider.dart';
 import 'package:provider/provider.dart';
 
 class CurrentProcessWidget extends StatelessWidget {
@@ -11,15 +11,15 @@ class CurrentProcessWidget extends StatelessWidget {
         child: SizedBox(
       width: 30,
       height: 400,
-      //For the current excutable process
+      //For the current executable process
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Column(
+            const Column(
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 SizedBox(
                   height: 50,
                 ),
@@ -51,11 +51,11 @@ class CurrentProcessWidget extends StatelessWidget {
                     decoration: BoxDecoration(border: Border.all(width: 2)),
                     child: Center(
                       child: Text(
-                        (Provider.of<ExcuteProvider>(context)
+                        (Provider.of<ExecuteProvider>(context)
                                     .currentProcess
                                     .AT !=
                                 -1)
-                            ? "p${Provider.of<ExcuteProvider>(context).currentProcess.id}"
+                            ? "p${Provider.of<ExecuteProvider>(context).currentProcess.id}"
                             : "",
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),

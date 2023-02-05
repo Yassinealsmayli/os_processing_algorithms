@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
+
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:os_algorithms_project/algorithms.dart';
 
 import '../global.dart';
 
-class ExcuteProvider with ChangeNotifier {
+class ExecuteProvider with ChangeNotifier {
   final List<Process> processesList;
   List<Process> queueList = [];
   List<Process> finishedProcessesList = [];
@@ -114,7 +115,7 @@ class ExcuteProvider with ChangeNotifier {
     }
   }
 
-  ExcuteProvider(this.processesList, this.algorithm,
+  ExecuteProvider(this.processesList, this.algorithm,
       {this.qTime, this.mlqAlgorithm}) {
     initProvider();
   }

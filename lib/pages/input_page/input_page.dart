@@ -1,5 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:os_algorithms_project/pages/excute_page/excute_page.dart';
+import 'package:os_algorithms_project/pages/execute_page/execute_page.dart';
 import 'package:os_algorithms_project/pages/input_page/widgets/upper_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -78,14 +78,14 @@ class _InputPageState extends State<InputPage> {
                               const EdgeInsets.all(10))),
                       onPressed: () => {
                             Navigator.of(context).push(FluentPageRoute(
-                                builder: ((context) => ExcutingPage(
+                                builder: ((context) => ExecutingPage(
                                       algorithm: index,
                                       processesList:
                                           List.from(transaction.list),
                                     ))))
                           },
                       child:
-                          Row(mainAxisSize: MainAxisSize.min, children: const [
+                          const Row(mainAxisSize: MainAxisSize.min, children: [
                         Text(
                           "Run",
                           style: TextStyle(color: Colors.white),
