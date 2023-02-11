@@ -3,7 +3,7 @@ import 'global.dart';
 class Algorithm {
   static Process fcfs(List<Process> queueList) {
     if (queueList.isEmpty) {
-      return Process(-1, -1, -1,qIndex: 1,id: -1);
+      return Process(-1, -1, -1, qIndex: 1, id: -1);
     }
     Process minAT = queueList[0];
     for (var element in queueList) {
@@ -18,7 +18,7 @@ class Algorithm {
 
   static Process srtf(List<Process> queueList) {
     if (queueList.isEmpty) {
-      return Process(-1, -1, -1,qIndex: 1,id: -1);
+      return Process(-1, -1, -1, qIndex: 1, id: -1);
     }
     Process minBT = queueList[0];
     for (var element in queueList) {
@@ -31,7 +31,7 @@ class Algorithm {
 
   static Process sjf(List<Process> queueList, Process lastProcess) {
     if (queueList.isEmpty) {
-      return Process(-1, -1, -1,qIndex: 1,id: -1);
+      return Process(-1, -1, -1, qIndex: 1, id: -1);
     }
     for (var element in queueList) {
       if (element == lastProcess) {
@@ -43,7 +43,7 @@ class Algorithm {
 
   static Process prio(List<Process> queueList) {
     if (queueList.isEmpty) {
-      return Process(-1, -1, -1,qIndex: 1,id: -1);
+      return Process(-1, -1, -1, qIndex: 1, id: -1);
     }
     Process maxPrio = queueList[0];
     for (var element in queueList) {
@@ -56,18 +56,31 @@ class Algorithm {
 
   static Process rr(
     List<Process> queueList,
+    Process currentProcess,
+    int qTime,
   ) {
     if (queueList.isEmpty) {
-      return Process(-1, -1, -1,qIndex: 1,id: -1);
+      return Process(-1, -1, -1, qIndex: 1, id: -1);
     } else {
-      return queueList[0];
+      if (qTime == 0) {
+        try {
+          return queueList
+              .where((element) => element != currentProcess)
+              .toList()
+              .first;
+        } catch (e) {
+          return currentProcess;
+        }
+      }
+      return currentProcess;
     }
   }
 
   static Process mlq(
-      List<Process> queueList, int queueAlgorithm, Process lastProcess) {
+      List<Process> queueList, int queueAlgorithm, Process lastProcess,
+      {int qTime = 1}) {
     if (queueList.isEmpty) {
-      return Process(-1, -1, -1,qIndex: 1,id: -1);
+      return Process(-1, -1, -1, qIndex: 1, id: -1);
     }
     int? highestQueue = queueList[0].qIndex;
     for (var element in queueList) {
@@ -87,9 +100,9 @@ class Algorithm {
       case 3:
         return prio(highestQueueList);
       case 4:
-        return rr(highestQueueList);
+        return rr(highestQueueList, lastProcess, qTime);
       default:
-        return Process(-1, -1, -1,qIndex: 1,id: -1);
+        return Process(-1, -1, -1, qIndex: 1, id: -1);
     }
   }
 }

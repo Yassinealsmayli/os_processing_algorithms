@@ -1,4 +1,6 @@
-import 'package:flutter/cupertino.dart';
+
+
+import 'package:fluent_ui/fluent_ui.dart';
 
 import '../global.dart';
 
@@ -11,7 +13,7 @@ class InputPageProvider with ChangeNotifier {
   List<Process> mlqList = [];
   List<Process> list = [];
   int index = 0;
-  int queueTime = 1;
+  int qTime = 1;
 
   InputPageProvider() {
     changeIndex(index);

@@ -52,12 +52,15 @@ class QueueListWidget extends StatelessWidget {
             //For the queue table
             child: Column(
               children: [
-                const Row(
+                Row(
                   children: [
-                    Expanded(child: Text("process")),
-                    Expanded(child: Text("A.T.")),
-                    Expanded(child: Text("B.T")),
-                    Expanded(child: Text("priority")),
+                    const Expanded(child: Text("process")),
+                    const Expanded(child: Text("A.T.")),
+                    const Expanded(child: Text("B.T")),
+                    if (provider.algorithm == 4)
+                      const Expanded(child: Text("priority")),
+                    if (provider.algorithm == 5)
+                      const Expanded(child: Text("Queue"))
                   ],
                 ),
                 Expanded(

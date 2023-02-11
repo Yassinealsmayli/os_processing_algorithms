@@ -20,8 +20,9 @@ class UpperBar extends StatefulWidget {
 class _UpperBarState extends State<UpperBar> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController rrController = TextEditingController();
     InputPageProvider provider = Provider.of<InputPageProvider>(context);
+    TextEditingController rrController =
+        TextEditingController(text: provider.qTime.toString());
     List<Widget> list = [];
     list.add(const Text(
       "Choose Algorithm for each queue:",
@@ -40,25 +41,19 @@ class _UpperBarState extends State<UpperBar> {
                   text: const Text("FCFS"),
                   onPressed: () {
                     provider.mlqMap[e] = 0;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   }),
               MenuFlyoutItem(
                   text: const Text("SJF"),
                   onPressed: () {
                     provider.mlqMap[e] = 1;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   }),
               MenuFlyoutItem(
                   text: const Text("SRTF"),
                   onPressed: () {
                     provider.mlqMap[e] = 2;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   }),
             ],
           )
@@ -76,8 +71,9 @@ class _UpperBarState extends State<UpperBar> {
                       width: 40,
                       height: 40,
                       child: TextBox(
+                        initialValue: provider.qTime.toString(),
                         onChanged: ((value) {
-                          provider.queueTime = (int.tryParse(value) != null)
+                          provider.qTime = (int.tryParse(value) != null)
                               ? int.parse(value)
                               : 1;
                         }),

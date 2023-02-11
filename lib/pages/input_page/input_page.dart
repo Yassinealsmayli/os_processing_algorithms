@@ -82,6 +82,7 @@ class _InputPageState extends State<InputPage> {
                                       algorithm: index,
                                       processesList:
                                           List.from(transaction.list),
+                                      qTime: (index==3)?transaction.qTime:1,
                                     ))))
                           },
                       child:

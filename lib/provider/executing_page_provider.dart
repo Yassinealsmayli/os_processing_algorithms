@@ -1,4 +1,3 @@
-
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:os_algorithms_project/algorithms.dart';
 
@@ -11,7 +10,7 @@ class ExecuteProvider with ChangeNotifier {
   final int algorithm;
   int _time = 0;
   int maxTime = 0;
-  int? qTime = 1;
+  int qTime = 1;
   int? _currentQTime;
   int? mlqAlgorithm;
 
@@ -19,14 +18,14 @@ class ExecuteProvider with ChangeNotifier {
 
   Process currentProcess = Process(-1, -1, -1, qIndex: 1, id: -1);
   void initTime() {
-    _time = 0;
+    _time = 1;
     timeChanged();
     notifyListeners();
   }
 
   timeInput(int t) {
-    if (t > maxTime) {
-      _time = maxTime;
+    if (t > maxTime + 1) {
+      _time = maxTime + 1;
     }
   }
 
@@ -38,13 +37,13 @@ class ExecuteProvider with ChangeNotifier {
   }
 
   void setMaxTime() {
-    _time = maxTime;
+    _time = maxTime + 1;
     timeChanged();
     notifyListeners();
   }
 
   void timeDecrease() {
-    if (_time > 0) {
+    if (_time > 1) {
       _time -= 1;
     }
     timeChanged();
@@ -63,8 +62,6 @@ class ExecuteProvider with ChangeNotifier {
     finishedProcessesList = [];
     currentProcess = Process(-1, -1, -1, qIndex: 1, id: -1);
     for (int i = 0; i <= _time; i++) {
-      finishedProcessesList.add(currentProcess);
-
       for (var element in processesList) {
         if (element.AT == i) {
           Process process = Process(element.AT, element.BT, element.priority,
@@ -74,15 +71,7 @@ class ExecuteProvider with ChangeNotifier {
         }
       }
       if (algorithm == 3) {
-        if (currentTimeProcess(queueList) == currentProcess &&
-            _currentQTime == 0) {
-          Process process = queueList[0];
-          queueList.removeAt(0);
-          queueList.add(process);
-          _currentQTime = qTime;
-        } else {
-          _currentQTime = _currentQTime! - 1;
-        }
+        roundRobin();
       }
       currentProcess = currentTimeProcess(queueList);
       if (queueList.contains(currentProcess)) {
@@ -93,6 +82,18 @@ class ExecuteProvider with ChangeNotifier {
           queueList.removeAt(i);
         }
       }
+      finishedProcessesList.add(currentProcess);
+    }
+  }
+
+  void roundRobin() {
+    if (_currentQTime == 0 &&
+        queueList.where((element) => element != currentProcess).isNotEmpty) {
+      currentProcess.AT = _time;
+      queueList.sort((a, b) => a.AT.compareTo(b.AT));
+      _currentQTime = qTime;
+    } else {
+      _currentQTime = (_currentQTime! - 1);
     }
   }
 
@@ -105,7 +106,7 @@ class ExecuteProvider with ChangeNotifier {
       case 2:
         return Algorithm.srtf(queueList);
       case 3:
-        return Algorithm.rr(queueList);
+        return Algorithm.rr(queueList, currentProcess, _currentQTime!);
       case 4:
         return Algorithm.prio(queueList);
       case 5:
@@ -116,7 +117,7 @@ class ExecuteProvider with ChangeNotifier {
   }
 
   ExecuteProvider(this.processesList, this.algorithm,
-      {this.qTime, this.mlqAlgorithm}) {
+      {required this.qTime, this.mlqAlgorithm}) {
     initProvider();
   }
 
@@ -130,6 +131,7 @@ class ExecuteProvider with ChangeNotifier {
           break;
         }
       }
+      _currentQTime = qTime;
       timeChanged();
       if (b && queueList.isEmpty && currentProcess.BT == -1) {
         maxTime = _time;

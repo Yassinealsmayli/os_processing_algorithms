@@ -15,13 +15,11 @@ class FinishedListWidget extends StatelessWidget {
     List<Process> listOfFinished = provider.finishedProcessesList;
     Map<int, int> flexMap = {};
     List<Widget> numberBar = [];
-    for (int i = 0; i <= provider.time; i++) {
+    for (int i = 0; i < listOfFinished.length; i++) {
       numberBar.add(Expanded(
           child: Center(
         child: Text(i.toString()),
       )));
-    }
-    for (int i = 0; i < listOfFinished.length; i++) {
       if (i != 0 && listOfFinished[i].id == listOfFinished[i - 1].id) {
         flexMap[finishedProcesses.length - 1] =
             flexMap[finishedProcesses.length - 1]! + 1;

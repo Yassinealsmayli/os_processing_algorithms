@@ -12,8 +12,13 @@ class ExecutingPage extends StatelessWidget {
   final int algorithm;
   final List<Process> processesList;
 
+  final int qTime;
+
   const ExecutingPage(
-      {super.key, required this.algorithm, required this.processesList});
+      {super.key,
+      required this.algorithm,
+      required this.processesList,
+      required this.qTime});
   String getStringFromInteger(int integer) {
     String string = "";
     (integer == -1) ? string = "-" : string = "$integer";
@@ -23,7 +28,8 @@ class ExecutingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ExecuteProvider>(
-      create: ((context) => ExecuteProvider(processesList, algorithm)),
+      create: ((context) =>
+          ExecuteProvider(processesList, algorithm, qTime: qTime)),
       builder: (context, _) {
         return NavigationView(
           appBar: NavigationAppBar(
